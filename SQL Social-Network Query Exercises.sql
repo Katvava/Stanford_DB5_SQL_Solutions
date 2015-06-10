@@ -16,3 +16,9 @@ from Highschooler h, Likes
 where h.id not in (select id1 from Likes) and h.id not in (select id2 from Likes)
 order by h.grade;
 
+/* 5. For every situation where student A likes student B, but we have no information about whom B likes (that is, B does not appear as an ID1 in the Likes table), return A and B's names and grades.  */
+select distinct h1.name, h1.grade, h2.name, h2.grade
+from Highschooler h1, Highschooler h2, Likes l
+where h1.id = l.id1 and h2.id = l.id2 and h2.id not in (select id1 from Likes)
+order by h1.grade;
+
