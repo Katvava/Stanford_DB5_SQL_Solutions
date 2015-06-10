@@ -8,3 +8,11 @@ select h1.name, h1.grade, h2.name, h2.grade
 from Highschooler h1, Highschooler h2, Likes l
 where l.id1 = h1.id and l.id2 = h2.id and h1.grade > h2.grade+1;
 
+/* 3. Find the names of all students who are friends with someone named Gabriel. */
+
+/* 4. Find all students who do not appear in the Likes table (as a student who likes or is liked) and return their names and grades. Sort by grade, then by name within each grade.  */
+select distinct h.name, h.grade
+from Highschooler h, Likes
+where h.id not in (select id1 from Likes) and h.id not in (select id2 from Likes)
+order by h.grade;
+
