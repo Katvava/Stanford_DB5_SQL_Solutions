@@ -32,7 +32,7 @@ order by h1.grade;
 select h1.name, h1.grade 
 from highschooler h1
 where not exists
-    (select * from highschooler h2 where h2.grade != h1.grade and 
+    (select * from highschooler h2 where h2.grade != h1.grade and       /*Grades not same*/
         exists (select * from friend f 
             where (f.id1 = h1.id or f.id2 = h1.id) and (f.id1 = h2.id or f.id2 = h2.id)))
 order by grade, name
